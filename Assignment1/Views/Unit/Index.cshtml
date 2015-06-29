@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Assignment1.Models.Enrolment>
+
+@{
+    ViewBag.Title = "Unit";
+}
+<div>
+    <h2 style="padding-top:10px;">Web Design Programming</h2>
+    <div>
+        <table style="border:solid 1px; width:500px; color:grey;">
+            <tr>
+                <th>&nbsp;Level:</th>
+                <td>Graduate level</td>
+            </tr>
+            <tr>
+                <th>&nbsp;Credit Points:</th>
+                <td>3</td>
+            </tr>
+            <tr>
+                <th>&nbsp;Faculty:</th>
+                <td>Faculty of Education, Science, Technology & Math</td>
+
+            </tr>
+            <tr>
+                <th>&nbsp;Discipline:</th>
+                <td>Academic Program Area - Maths & Technology</td>
+
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <h3>Learning Outcomes</h3>
+        <ol class="greycolor">
+            <li>essential skills to develop web oriented applications.</li>
+            <li>gain self development skills and problem solvingskills in these areas.</li>
+            <li>also gain self development skills and problem solvingskills in these areas.1. Internet and web application structures,2. Web applications with database,3. accessibility,4. security and legal issues.</li>
+        </ol>
+    </div>
+    <div>
+        <h3>Avsilablity</h3>
+        <p class="greycolor">This unit is available the whole year!</p>
+    </div>
+    <div>
+        <h3>Lecture Room</h3>
+        <p class="greycolor">The lecture room is in Building 25 Level A No.10</p>
+    </div>
+
+    <h3>Tutorial Room</h3>
+  
+    <div class="teachingDiv2">
+
+        <table class=" table greycolor">
+            <tbody>
+                <tr>
+                    <th>
+                        Unit Name
+                    </th>
+                    <th>
+                        Lecture Room
+                    </th>
+                    <th>
+                        Tutorial Room
+                    </th>
+                    <th>
+                        Enroll Status
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClassName)
+                        </td>
+                        <td>
+                            11B45
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoomNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

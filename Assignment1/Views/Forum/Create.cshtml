@@ -1,0 +1,43 @@
+﻿@model Assignment1.Models.Forum
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Forum</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Topic)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Topic)
+            @Html.ValidationMessageFor(model => model.Topic)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Comment, new { cols = 50, @rows = 5 })
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" class=" btn btn-info"/>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

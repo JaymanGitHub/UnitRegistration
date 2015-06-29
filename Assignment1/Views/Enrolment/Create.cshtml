@@ -1,0 +1,70 @@
+﻿@model Assignment1.Models.Enrolment
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Enrolment</legend>
+
+        <div class="editor-label">
+            <p style="font-size:1.2em"><b>Tutorial Name</b></p>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ClassName)
+            @Html.ValidationMessageFor(model => model.ClassName)
+        </div>
+
+        <div class="editor-label">
+            <p style="font-size:1.2em"><b>Room Number</b></p>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RoomNo)
+            @Html.ValidationMessageFor(model => model.RoomNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tutor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tutor)
+            @Html.ValidationMessageFor(model => model.Tutor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Time)
+        </div>
+        <div class="editor-field">
+
+            @Html.TextBoxFor(model => model.Time,  new { @placeholder = "9 am / Monday" })
+
+            @Html.ValidationMessageFor(model => model.Time)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Capacity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Capacity)
+            @Html.ValidationMessageFor(model => model.Capacity)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" style="btn" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

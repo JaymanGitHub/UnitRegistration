@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Assignment1.Models.EnrolledStudent>
+@{
+    ViewBag.Title = "View";
+}
+
+<br>
+
+
+<div class="teachingDiv2" style="height:350px;">
+    <table class=" table">
+
+        <tr>
+            <th>
+                Student Name
+            </th>
+            <th>
+                Date Enrolled
+            </th>
+
+            <th>Delete</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StuName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateEnrolled)
+                </td>
+                @if (User.IsInRole("Lecturer"))
+                { 
+                <td>
+                    @Html.ActionLink("Delete", "DeleteStudent", new { id = item.Id }, new { onclick = "return confirm('Are you sure you want to delete this student?')" })
+                </td>
+                }
+            </tr>
+        }
+    </table>
+</div>

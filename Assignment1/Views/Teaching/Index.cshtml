@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Assignment1.Models.Teaching>
+@{
+    ViewBag.Title = "Teaching";
+}
+
+<div class="teachingDiv1">
+
+    @if (User.IsInRole("Lecturer"))
+    {
+        using (Html.BeginForm("LecturerUploadFile", "Teaching", FormMethod.Post,
+        new { enctype = "multipart/form-data" }))
+        {
+            @*<input type="text" name="rename" placeholder="File Name" />*@
+            @Html.TextBox("rename", "", new { placeholder = "File Name" })
+            <input type="file" value="selectedFile" name="selectedFile" />
+            <input type="submit" value="Upload" class="btn btn-info" />
+        }
+    }
+</div>
+
+<div class="teachingDiv2" style="height:350px;">
+    <table class=" table">
+
+        <tr>
+            <th>
+                File Name
+            </th>
+            <th>
+                Date uploaded
+            </th>
+            <th>
+                Download
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RealName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOC)
+                </td>
+
+                <td>
+                    <a href="../LecturerUploadedFiles/@item.Guid" class="glyphicon glyphicon-download-alt"></a>
+                </td>
+                @if (User.IsInRole("Lecturer"))
+                {
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure you want to delete this file?')" })
+                        |@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    </td>
+                }
+            </tr>
+
+        }
+    </table>
+</div>

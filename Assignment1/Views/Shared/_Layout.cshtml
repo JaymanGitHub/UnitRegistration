@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - GlobalUni</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />       
+        <meta name="viewport" content="width=device-width" />
+       
+        @Styles.Render("~/Content/css")
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />  
+          
+        @Scripts.Render("~/bundles/modernizr")
+        <script src="~/Scripts/jquery-2.1.1.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+
+        <link href="~/Content/MyStyle.css" rel="stylesheet" />   
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="logoPosition">
+                    <p class="logo">@Html.ActionLink("GlobalUni", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Teaching", "Index", "Teaching")</li>
+                            <li>@Html.ActionLink("Enrolment", "Index", "Enrolment")</li>
+                            <li>@Html.ActionLink("Forum", "Index", "Forum")</li>
+                            <li>@Html.ActionLink("Assessment", "Index", "Assessment")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @*@RenderSection("featured", required: false)*@
+            <section class="content-wrapper clear-fix">
+                
+               
+                @RenderBody()
+            </section>
+        </div>
+        <footer style="height: 50px;">
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Global University</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

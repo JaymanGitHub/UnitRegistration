@@ -1,0 +1,97 @@
+﻿@model List<Assignment1.Models.Enrolment>
+@{
+    ViewBag.Title = "Enrolment";
+}
+
+<br />
+@if(User.IsInRole("lecturer"))
+{
+    <input type="button" class="btn btn-info" value="Create New" onclick="location.href='@Url.Action("Create", "Enrolment")'" />
+}
+<div class="teachingDiv2">
+
+    <table class="table">
+        <tr>
+            <th>
+                Tutorial Name
+            </th>
+            <th>
+                Room No
+            </th>
+            <th>
+                Time
+            </th>
+            <th>
+                Status
+            </th>
+            <th>Enrolled</th>
+            <th>Capacity</th>
+            <th>Enrol</th>
+            <th>View</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClassName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @if (item.SrudentCount >= item.Capacity)
+                    { <p>Unavailable</p> }
+                    else
+                    { @Html.DisplayFor(modelItem => item.Status);
+                    }
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SrudentCount)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    @if(User.IsInRole("student"))
+                    {
+                    if (item.SrudentCount >= item.Capacity)
+                    {
+
+                        <input type="button" value="Enrol" class="btn btn-success" style="width:50px;" disabled="disabled" />
+                    }
+                    else
+                    {
+                        @*<input type="button" value="Enrol" class="btn btn-success" style="width:50px;" onclick=" enrolment()" />*@
+
+                        <a href="@Url.Action("Enroll", "Enrolment", new { @tutorialId = item.Id })" class="btn btn-success" style="width:50px;">Enrol</a>
+                    }
+                    }
+                </td>
+                @if (User.IsInRole("Lecturer") || User.IsInRole("Tutor"))
+                {
+                    <td>
+                        <a href="@Url.Action("View", "Enrolment", new { @tutorialId = item.Id })" class="btn btn-success" style="width:50px;">View</a>
+                    </td>
+                    if (User.IsInRole("Lecturer"))
+                    {
+
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure you want to delete this tutorial?')" })
+                            |@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        </td>
+                    }
+                }
+
+            </tr>
+        }
+    </table>
+    <p><b>@ViewBag.Status</b></p>
+</div>

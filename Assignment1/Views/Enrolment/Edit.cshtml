@@ -1,0 +1,83 @@
+﻿@model Assignment1.Models.Enrolment
+
+@{
+    ViewBag.Title = "Enrolment";
+}
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Change file name </legend>
+
+        @Html.HiddenFor(model => model.Id)
+        
+            @Html.HiddenFor(model => model.SrudentCount)
+            @Html.HiddenFor(model => model.Status)
+        <div class="editor-field">
+            @Html.LabelFor(model => model.ClassName) <br>
+            @Html.EditorFor(model => model.ClassName)
+        </div>
+            <div class="editor-label">
+                <p style="font-size:1.2em"><b>Tutor</b> </p>
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Tutor)
+                @Html.ValidationMessageFor(model => model.Tutor)
+            </div>
+            <div class="editor-label">
+                <p style="font-size:1.2em"><b>Class Size</b> </p>
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Capacity)
+                @Html.ValidationMessageFor(model => model.Capacity)
+            </div>
+            <div class="editor-label">
+                <p style="font-size:1.2em"><b>Room Number</b> </p>
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.RoomNo)
+                @Html.ValidationMessageFor(model => model.RoomNo)
+            </div>
+            <div class="editor-label">
+                <p style="font-size:1.2em"><b>Start Time</b> </p>
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Time)
+                @Html.ValidationMessageFor(model => model.Time)
+            </div>
+
+            <br />
+            <br />
+
+            <div>
+                <p><b>Detail</b></p>
+                <p>
+                    Class Size: @Html.DisplayFor(model => model.Capacity)
+                </p>
+                <p>
+                    Room Number: @Html.DisplayFor(model => model.RoomNo)
+                </p>
+                <p>
+                    Start Time: @Html.DisplayFor(model => model.Time)
+                </p>
+                <p>
+                    Tutor: @Html.DisplayFor(model => model.Tutor)
+
+                </p>
+            </div>
+            <br /><br />
+            <p>
+                <input type="submit" value="Submit" class="btn btn-info" />
+            </p>
+</fieldset>
+
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

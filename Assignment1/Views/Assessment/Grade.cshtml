@@ -1,0 +1,48 @@
+﻿@model Assignment1.Models.Assessment
+
+@{
+    ViewBag.Title = "Grade";
+}
+<br/>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+<fieldset>
+    <legend>Grading</legend>
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.StuName)
+    @Html.HiddenFor(model => model.FileName)
+    @Html.HiddenFor(model => model.DateUpload)
+    @Html.HiddenFor(model =>model.Guid)
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Grade)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Grade)
+        @Html.ValidationMessageFor(model => model.Grade)
+    </div>
+    <br />
+    <br />
+
+    <div>
+        <p><b>Detail</b></p>
+        <p>Student Name: @Html.DisplayFor(model => model.StuName)<br/>
+        File Name: @Html.DisplayFor(model => model.FileName)<br/>
+        Date Upload: @Html.DisplayFor(model => model.DateUpload)</p>
+    </div>
+    <br /><br />
+    <p>
+        <input type="submit" value="Submit" class="btn btn-info"/>
+    </p>
+</fieldset>
+
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
